@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Uniclin - Excelência em saúde com atendimento humanizado e tecnologia de ponta no centro de São Paulo.">
+    <title>Uniclin | Clínica Médica Premium</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f766e', // Teal 700
+                        secondary: '#134e4a', // Teal 800
+                        accent: '#2dd4bf', // Teal 400
+                        gold: '#d4af37',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .seal-glow {
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #0f766e 0%, #2dd4bf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .verification-seal {
+            background: linear-gradient(145deg, #ffffff, #f3f4f6);
+            border: 2px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .verification-seal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-gray-50 smooth-scroll">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 glass-effect border-b border-gray-200 shadow-sm">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center shadow-lg">
+                        <i data-lucide="activity" class="text-white w-6 h-6"></i>
+                    </div>
+                    <span class="text-2xl font-serif font-bold text-primary tracking-tight">Uniclin</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-primary font-medium transition-colors">Início</a>
+                    <a href="#sobre" class="text-gray-600 hover:text-primary font-medium transition-colors">Sobre</a>
+                    <a href="#servicos" class="text-gray-600 hover:text-primary font-medium transition-colors">Serviços</a>
+                    <a href="#equipe" class="text-gray-600 hover:text-primary font-medium transition-colors">Equipe</a>
+                    <a href="#contato" class="text-gray-600 hover:text-primary font-medium transition-colors">Contato</a>
+                    <a href="https://wa.me/5554984070079" target="_blank" class="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-full font-medium transition-all hover:shadow-lg flex items-center space-x-2">
+                        <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                        <span>Agendar</span>
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-primary">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#inicio" class="block text-gray-600 hover:text-primary font-medium">Início</a>
+                <a href="#sobre" class="block text-gray-600 hover:text-primary font-medium">Sobre</a>
+                <a href="#servicos" class="block text-gray-600 hover:text-primary font-medium">Serviços</a>
+                <a href="#equipe" class="block text-gray-600 hover:text-primary font-medium">Equipe</a>
+                <a href="#contato" class="block text-gray-600 hover:text-primary font-medium">Contato</a>
+                <a href="https://wa.me/5554984070079" target="_blank" class="block bg-primary text-white px-6 py-3 rounded-lg text-center font-medium">
+                    Agendar Consulta
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 lg:pt-40 lg:pb-32 bg-gradient-to-br from-teal-50 to-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-100/50 to-transparent -z-10"></div>
+        
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-fade-in">
+                    <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur px-4 py-2 rounded-full border border-teal-100 shadow-sm">
+                        <span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-sm font-medium text-primary">Atendimento 24h disponível</span>
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-6xl font-serif font-bold leading-tight text-gray-900">
+                        Excelência em saúde com <span class="gradient-text">tecnologia</span> e <span class="gradient-text">humanização</span>
+                    </h1>
+                    
+                    <p class="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-xl">
+                        Há mais de 15 anos oferecendo atendimento médico de alta complexidade no coração de São Paulo, com profissionais renomados e estrutura completa.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/5554984070079" target="_blank" class="inline-flex items-center justify-center space-x-2 bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-semibold transition-all hover:shadow-xl hover:-translate-y-1">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            <span>Agendar pelo WhatsApp</span>
+                        </a>
+                        <a href="#servicos" class="inline-flex items-center justify-center space-x-2 bg-white border-2 border-primary text-primary hover:bg-teal-50 px-8 py-4 rounded-full font-semibold transition-all">
+                            <span>Conhecer Serviços</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="pt-8 flex items-center space-x-6 text-sm text-gray-500">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-primary"></i>
+                            <span>Certificada ANVISA</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="users" class="w-5 h-5 text-primary"></i>
+                            <span>50k+ Pacientes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="http://static.photos/medical/1024x576/42" alt="Uniclin - Atendimento Médico" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Floating Card -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 max-w-xs hidden lg:block">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="flex -space-x-2">
+                                <img src="http://static.photos/people/100x100/1" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Médico">
+                                <img src="http://static.photos/people/100x100/2" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Médico">
+                                <img src="http://static.photos/people/100x100/3" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="Médico">
+                            </div>
+                            <div class="text-sm">
+                                <p class="font-bold text-gray-900">+40 Especialistas</p>
+                                <p class="text-gray-500">Disponíveis hoje</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center text-yellow-500 text-sm">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <span class="ml-2 text-gray-600">4.9/5 (2.847 avaliações)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Seals Section -->
+    <section class="py-16 bg-white border-y border-gray-200">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl font-serif font-bold text-gray-900 mb-2">Credenciamentos e Certificações</h2>
+                <p class="text-gray-500">Padrões internacionais de qualidade e segurança</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <!-- Seal 1 -->
+                <div class="verification-seal rounded-xl p-6 text-center hover-lift seal-glow">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-blue-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="award" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-gray-800">ISO 9001</h3>
+                    <p class="text-xs text-gray-500 mt-1">Certificada</p>
+                </div>
+
+                <!-- Seal 2 -->
+                <div class="verification-seal rounded-xl p-6 text-center hover-lift seal-glow">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-green-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-green-600"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-gray-800">ANVISA</h3>
+                    <p class="text-xs text-gray-500 mt-1">Autorizada</p>
+                </div>
+
+                <!-- Seal 3 -->
+                <div class="verification-seal rounded-xl p-6 text-center hover-lift seal-glow">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-yellow-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="badge-check" class="w-8 h-8 text-yellow-600"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-gray-800">JCI</h3>
+                    <p class="text-xs text-gray-500 mt-1">Acreditada</p>
+                </div>
+
+                <!-- Seal 4 -->
+                <div class="verification-seal rounded-xl p-6 text-center hover-lift seal-glow">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-purple-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="file-check" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-gray-800">OEA</h3>
+                    <p class="text-xs text-gray-500 mt-1">Excelência</p>
+                </div>
+
+                <!-- Seal 5 -->
+                <div class="verification-seal rounded-xl p-6 text-center hover-lift seal-glow">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-teal-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="heart-pulse" class="w-8 h-8 text-teal-600"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-gray-800">SNS</h3>
+                    <p class="text-xs text-gray-500 mt-1">Credenciada</p>
+                </div>
+
+                <!-- Seal 6 -->
+                <div class="verification-seal rounded-xl p-6 text-center hover-lift seal-glow">
+                    <div class="w-16 h-16 mx-auto mb-3 bg-red-50 rounded-full flex items-center justify-center">
+                        <i data-lucide="scan-face" class="w-8 h-8 text-red-600"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-gray-800">LGPD</h3>
+                    <p class="text-xs text-gray-500 mt-1">Compliance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Nossas Especialidades</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mt-3 mb-4">Atendimento completo em um só lugar</h2>
+                <p class="text-gray-600 text-lg">Oferecemos mais de 30 especialidades médicas com equipamentos de última geração e profissionais altamente qualificados.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover-lift border border-gray-100 group">
+                    <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="stethoscope" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Clínica Médica</h3>
+                    <p class="text-gray-600 mb-4">Atendimento geral e preventivo com foco na saúde integral do paciente e diagnóstico precoce.</p>
+                    <a href="#" class="text-primary font-semibold flex items-center space-x-1 hover:space-x-2 transition-all">
+                        <span>Saiba mais</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover-lift border border-gray-100 group">
+                    <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="heart" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cardiologia</h3>
+                    <p class="text-gray-600 mb-4">Exames completo como ecocardiograma, holter, teste ergométrico e cateterismo.</p>
+                    <a href="#" class="text-primary font-semibold flex items-center space-x-1 hover:space-x-2 transition-all">
+                        <span>Saiba mais</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover-lift border border-gray-100 group">
+                    <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="brain" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Neurologia</h3>
+                    <p class="text-gray-600 mb-4">Tratamento de distúrbios do sistema nervoso central e periférico com tecnologia avançada.</p>
+                    <a href="#" class="text-primary font-semibold flex items-center space-x-1 hover:space-x-2 transition-all">
+                        <span>Saiba mais</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover-lift border border-gray-100 group">
+                    <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="bone" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ortopedia</h3>
+                    <p class="text-gray-600 mb-4">Cirurgias ortopédicas minimamente invasivas e reabilitação completa.</p>
+                    <a href="#" class="text-primary font-semibold flex items-center space-x-1 hover:space-x-2 transition-all">
+                        <span>Saiba mais</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover-lift border border-gray-100 group">
+                    <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="baby" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pediatria</h3>
+                    <p class="text-gray-600 mb-4">Acompanhamento do recém-nascido à adolescência com pediatras especializados.</p>
+                    <a href="#" class="text-primary font-semibold flex items-center space-x-1 hover:space-x-2 transition-all">
+                        <span>Saiba mais</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm hover-lift border border-gray-100 group">
+                    <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <i data-lucide="scan" class="w-7 h-7 text-primary group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Imagem</h3>
+                    <p class="text-gray-600 mb-4">Ressonância magnética, tomografia, ultrassonografia 4D e raio-x digital.</p>
+                    <a href="#" class="text-primary font-semibold flex items-center space-x-1 hover:space-x-2 transition-all">
+                        <span>Saiba mais</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="http://static.photos/office/640x360/10" alt="Recepção Uniclin" class="rounded-2xl shadow-lg w-full h-64 object-cover">
+                        <img src="http://static.photos/technology/640x360/20" alt="Equipamentos Uniclin" class="rounded-2xl shadow-lg w-full h-64 object-cover mt-8">
+                    </div>
+                    <div class="absolute -z-10 -bottom-8 -left-8 w-64 h-64 bg-teal-50 rounded-full blur-3xl"></div>
+                    <div class="absolute -z-10 -top-8 -right-8 w-64 h-64 bg-blue-50 rounded-full blur-3xl"></div>
+                </div>
+
+                <div class="space-y-6">
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">Sobre Nós</span>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900">Referência em saúde no Centro de São Paulo</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        Localizada na tradicional Rua XV de Novembro, a Uniclin nasceu com a missão de democratizar o acesso à saúde de alta qualidade. Nossa estrutura moderna e equipe multidisciplinar garantem atendimento integral ao paciente.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 pt-4">
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="text-3xl font-bold text-gray-900">15+</h4>
+                            <p class="text-gray-600">Anos de experiência</p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="text-3xl font-bold text-gray-900">40+</h4>
+                            <p class="text-gray-600">Especialistas</p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="text-3xl font-bold text-gray-900">50k+</h4>
+                            <p class="text-gray-600">Pacientes atendidos</p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4">
+                            <h4 class="text-3xl font-bold text-gray-900">30+</h4>
+                            <p class="text-gray-600">Especialidades</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equipe" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-primary font-semibold tracking-wider uppercase text-sm">Corpo Clínico</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mt-3 mb-4">Médicos especialistas renomados</h2>
+                <p class="text-gray-600 text-lg">Nossa equipe é formada por médicos com formação nacional e internacional, membros de sociedades médicas e com vasta experiência clínica.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Doctor 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift">
+                    <img src="http://static.photos/people/400x400/101" alt="Dr. Carlos Mendes" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900">Dr. Carlos Mendes</h3>
+                        <p class="text-primary font-medium text-sm mb-3">Cardiologia</p>
+                        <p class="text-gray-500 text-sm">CRM-SP 123456 | Formado pela USP com especialização no Hospital das Clínicas.</p>
+                    </div>
+                </div>
+
+                <!-- Doctor 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift">
+                    <img src="http://static.photos/people/400x400/102" alt="Dra. Ana Paula Silveira" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900">Dra. Ana Paula Silveira</h3>
+                        <p class="text-primary font-medium text-sm mb-3">Neurologia</p>
+                        <p class="text-gray-500 text-sm">CRM-SP 789012 | Pós-graduada pela Universidade de Harvard.</p>
+                    </div>
+                </div>
+
+                <!-- Doctor 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift">
+                    <img src="http://static.photos/people/400x400/103" alt="Dr. Roberto Lima" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900">Dr. Roberto Lima</h3>
+                        <p class="text-primary font-medium text-sm mb-3">Ortopedia</p>
+                        <p class="text-gray-500 text-sm">CRM-SP 345678 | Especialista em cirurgia minimamente invasiva.</p>
+                    </div>
+                </div>
+
+                <!-- Doctor 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover-lift">
+                    <img src="http://static.photos/people/400x400/104" alt="Dra. Marina Costa" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900">Dra. Marina Costa</h3>
+                        <p class="text-primary font-medium text-sm mb-3">Pediatria</p>
+                        <p class="text-gray-500 text-sm">CRM-SP 901234 | Pediatra e neonatologista com 20 anos de experiência.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-20 bg-white">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <span class="text-primary font-semibold tracking-wider uppercase text-sm">Contato</span>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mt-3 mb-6">Agende sua consulta</h2>
+                    <p class="text-gray-600 text-lg mb-8">
+                        Estamos localizados no coração de São Paulo, com fácil acesso pelo metrô e principais vias. Entre em contato para agendamentos ou dúvidas.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Endereço</h3>
+                                <p class="text-gray-600">Rua XV de Novembro, 724<br>Centro - São Paulo/SP<br>CEP: 01010-000</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Telefone</h3>
+                                <p class="text-gray-600">(54) 98407-0079<br>Atendimento 24h via WhatsApp</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-teal-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-6 h-6 text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900 mb-1">Horário de Funcionamento</h3>
+                                <p class="text-gray-600">Segunda a Sexta: 07h às 20h<br>Sábados: 08h às 14h<br>Emergências: 24h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-8 border-t border-gray-200">
+                        <a href="https://wa.me/5554984070079" target="_blank" class="inline-flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold transition-all hover:shadow-lg w-full sm:w-auto">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            <span>Falar no WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 rounded-2xl overflow-hidden h-96 lg:h-auto relative">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.5636803757745!2d-46.6333824!3d-23.5456912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5856f55b5555%3A0x5755e3c4be7f0a1!2sR.%20XV%20de%20Novembro%20-%20Centro%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1699900000000!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="absolute inset-0">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8 border-t-4 border-primary">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                            <i data-lucide="activity" class="text-white w-6 h-6"></i>
+                        </div>
+                        <span class="text-2xl font-serif font-bold">Uniclin</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Excelência em saúde com foco no bem-estar do paciente. Tecnologia moderna e atendimento humanizado desde 2008.
+                    </p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">Links Rápidos</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#sobre" class="hover:text-accent transition-colors">Sobre Nós</a></li>
+                        <li><a href="#servicos" class="hover:text-accent transition-colors">Especialidades</a></li>
+                        <li><a href="#equipe" class="hover:text-accent transition-colors">Corpo Clínico</a></li>
+                        <li><a href="#contato" class="hover:text-accent transition-colors">Agendamentos</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">Principais Serviços</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-accent transition-colors">Cardiologia</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Ortopedia</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Neurologia</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Exames Laboratoriais</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Imagem (RM, TC)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-bold mb-4 text-white">Contato</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center space-x-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-primary"></i>
+                            <span>Rua XV de Novembro, 724 - Centro</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i data-lucide="phone" class="w-4 h-4 text-primary"></i>
+                            <span>(54) 98407-0079</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-primary"></i>
+                            <span>contato@uniclin.com.br</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-gray-500 text-sm">
+                    © 2024 Uniclin Clínica Médica. Todos os direitos reservados.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-600">
+                    <span class="flex items-center space-x-1">
+                        <i data-lucide="shield-check" class="w-3 h-3"></i>
+                        <span>Site Seguro SSL</span>
+                    </span>
+                    <span class="flex items-center space-x-1">
+                        <i data-lucide="lock" class="w-3 h-3"></i>
+                        <span>LGPD Compliant</span>
+                    </span>
+                    <span class="flex items-center space-x-1">
+                        <i data-lucide="badge-check" class="w-3 h-3"></i>
+                        <span>CNPJ: 12.345.678/0001-90</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5554984070079" target="_blank" class="whatsapp-float bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110" aria-label="WhatsApp">
+        <i data-lucide="message-circle" class="w-8 h-8 fill-current"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+<script src="https://deepsite.hf.co/deepsite-badge.js"></script>
+</body>
+</html>
